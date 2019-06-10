@@ -1,0 +1,24 @@
+<?php
+
+namespace TkStartup\Services;
+
+class ProductNameService {
+
+    private $connection;
+
+    public function __construct($connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function getProductNames() {
+        $queryBuilder = $this->connection->createQueryBuilder();
+
+        $result = $queryBuilder->select(['name'])->from('s_articles')->setMaxResults(20)->execute();
+
+        $productNames = $result->fetchAll();
+
+        return $productNames;
+    }
+
+}

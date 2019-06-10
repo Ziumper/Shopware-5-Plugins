@@ -7,6 +7,8 @@
         <service id="tk_startup.subscribers.frontend_routing_subscriber" class="TkStartup\Subscribers\FrontendRoutingSubscriber">
             <tag name="shopware.event_subscriber"/>
         </service>
+        <service id="tk_startup.services.product_name_service" class="TkStartup\Services\ProductNameService">
+           <argument type="service" id="dbal_connection"/>
+        </service>
     </services>
-
 </container>

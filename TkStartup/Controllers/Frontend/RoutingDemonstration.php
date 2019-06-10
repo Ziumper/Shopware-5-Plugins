@@ -22,6 +22,10 @@ class Shopware_Controllers_Frontend_RoutingDemonstration extends Enlight_Control
 
     public function indexAction()
     {
+        $productNameService = $this->get('tk_startup.services.product_name_service');
+        $productNames = $productNameService->getProductNames();
+
+        $this->view->assign('productNames',$productNames);
         $this->view->assign('nextPage','foo');
     }
 
