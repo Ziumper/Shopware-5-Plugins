@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="shopware.api.bundle" class="TkBundle\Components\Api\Resource\Bundle"/>
+
+        <service class="TkBundle\Bundle\StoreFrontBundle\BundleService" id="tk_bundle_store_front.bundle_service">
+            <argument id="dbal_connection" type="service"/>
+            <argument id="tk_bundle_store_front.list_product_service_decorator.inner" type="service"/>
+            <argument id="legacy_struct_converter" type="service"/>
+        </service>
+
+        <service class="TkBundle\Bundle\StoreFrontBundle\ListProductServiceDecorator"
+                 id="tk_bundle_store_front.list_product_service_decorator"
+                 decorates="shopware_storefront.list_product_service"
+        >
+            <argument id="tk_bundle_store_front.list_product_service_decorator.inner" type="service"/>
+            <argument id="tk_bundle_store_front.bundle_service" type="service"/>
+        </service>
+    </services>
+
+
+
+
+</container>
